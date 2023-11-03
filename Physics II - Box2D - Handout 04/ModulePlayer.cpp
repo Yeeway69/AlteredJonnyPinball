@@ -87,7 +87,7 @@ update_status ModulePlayer::Update()
 	}
 
 	// Kicker --------------------------------------------------------
-	kicker.mobile->body->ApplyForce({ 0,-18 }, { 0,0 }, true);
+	//kicker.mobile->body->ApplyForce({ 0,-18 }, { 0,0 }, true);
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		kicker.mobile->body->ApplyForce({ 0,18 }, { 0,0 }, true);

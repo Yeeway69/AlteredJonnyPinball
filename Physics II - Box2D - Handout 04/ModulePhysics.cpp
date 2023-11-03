@@ -51,7 +51,45 @@ bool ModulePhysics::Start()
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
-	big_ball->CreateFixture(&fixture);
+	// Pivot 0, 0
+	int pinball[68] = {
+	121, 663,
+	116, 1165,
+	417, 1462,
+	677, 1469,
+	984, 1164,
+	981, 765,
+	1012, 768,
+	1010, 1453,
+	1066, 1450,
+	1070, 755,
+	978, 597,
+	981, 462,
+	967, 372,
+	948, 318,
+	920, 262,
+	883, 208,
+	845, 167,
+	795, 132,
+	746, 102,
+	686, 77,
+	605, 60,
+	538, 55,
+	463, 65,
+	397, 86,
+	328, 117,
+	273, 155,
+	223, 201,
+	191, 245,
+	151, 315,
+	132, 366,
+	122, 423,
+	120, 542,
+	118, 636,
+	120, 752
+	};
+
+	App->physics->CreateChain(-SCREEN_WIDTH/2, -SCREEN_HEIGHT / 2, pinball, 16, b2_staticBody);
 
 	return true;
 }
@@ -151,10 +189,10 @@ PhysBody* ModulePhysics::CreateRectangleSensor(int x, int y, int width, int heig
 	return pbody;
 }
 
-PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size)
+PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2BodyType type)
 {
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
+	body.type = type;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
