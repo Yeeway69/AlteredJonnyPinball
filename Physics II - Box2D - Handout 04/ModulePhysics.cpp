@@ -53,7 +53,7 @@ bool ModulePhysics::Start()
 	fixture.shape = &shape;
 	// Pivot 0, 0
 	int pinball[68] = {
-	121, 663,
+	120, 714,
 	116, 1165,
 	417, 1462,
 	677, 1469,
@@ -83,13 +83,13 @@ bool ModulePhysics::Start()
 	191, 245,
 	151, 315,
 	132, 366,
-	122, 423,
+	121, 448,
 	120, 542,
-	118, 636,
-	120, 752
+	120, 635,
+	120, 663
 	};
 
-	App->physics->CreateChain(-SCREEN_WIDTH/2, -SCREEN_HEIGHT / 2, pinball, 16, b2_staticBody);
+	App->physics->CreateChain(0/2, -SCREEN_HEIGHT / 2, pinball, 16, b2_staticBody);
 
 	return true;
 }
