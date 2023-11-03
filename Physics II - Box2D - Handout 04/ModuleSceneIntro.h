@@ -4,6 +4,12 @@
 #include "p2Point.h"
 #include "Globals.h"
 
+enum Scene {
+	START,
+	PINBALL,
+	GAMEOVER
+};
+
 class PhysBody;
 
 class ModuleSceneIntro : public Module
@@ -24,6 +30,13 @@ public:
 
 	PhysBody* sensor;
 	bool sensed;
+	Scene currentScene;
+
+
+	//Pantalla inicio
+	SDL_Texture* backgroundTexture = nullptr;
+	bool skibidi;
+	//
 
 	SDL_Texture* circle;
 	SDL_Texture* box;
