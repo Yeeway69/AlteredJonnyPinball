@@ -21,7 +21,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	//Kicker -----------------------------------------------------------------------------------------
-	kicker.pivot = App->physics->CreateRectangle(350, 140, 20, 8, b2_staticBody);
+	kicker.pivot = App->physics->CreateRectangle(1700, 140, 20, 8, b2_staticBody);
 	kicker.mobile = App->physics->CreateRectangle(350, 160, 22, 8, b2_dynamicBody);
 	App->physics->CreatePrismaticJoint(kicker.mobile, { 0,0 }, kicker.pivot, { 0,0 }, { 0,1 }, 1.9f);
 
