@@ -90,11 +90,11 @@ update_status ModulePlayer::Update()
 	//kicker.mobile->body->ApplyForce({ 0,-18 }, { 0,0 }, true);
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		kicker.mobile->body->ApplyForce({ 0,18 }, { 0,0 }, true);
+		kicker.mobile->body->ApplyForce({ 0,1 }, { 0,0 }, true);
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
 	{
-		kicker.mobile->body->ApplyForce({ 0,-110 }, { 0,0 }, true);
+		kicker.mobile->body->ApplyForce({ 0,-1 }, { 0,0 }, true);
 		App->audio->PlayFx(kickerFx);
 	}
 
