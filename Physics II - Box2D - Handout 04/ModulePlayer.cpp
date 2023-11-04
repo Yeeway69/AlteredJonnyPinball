@@ -20,6 +20,23 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
+	// Flippers --------------------------------------------------------------
+	b2Vec2 a = { 0.44, -0 };
+	b2Vec2 b = { -0, 0 };
+	Flipper* f = new Flipper;
+	f->Circle = App->physics->CreateCircle(182, 868, 4, b2_staticBody);
+	f->Rect = App->physics->CreateRectangle(182 + rectSect.w / 2, 858 + rectSect.h / 2, rectSect.w, rectSect.h - 10, b2_dynamicBody);
+	f->rightSide = false;
+	App->physics->CreateRevoluteJoint(f->Rect, a, f->Circle, b, 35.0f);
+	flippers.add(f);
+
+	Flipper* f2 = new Flipper;
+	f2->Circle = App->physics->CreateCircle(382, 410, 4, b2_staticBody);
+	f2->Rect = App->physics->CreateRectangle(182 + rectSect.w, 400 + rectSect.h / 2, rectSect.w, rectSect.h - 10, b2_dynamicBody);
+	f2->rightSide = true;
+	App->physics->CreateRevoluteJoint(f2->Rect, a, f2->Circle, b, 35.0f);
+	flippers.add(f2);
+
 	//Kicker -----------------------------------------------------------------------------------------
 	kicker.pivot = App->physics->CreateRectangle(1700, 140, 20, 8, b2_staticBody);
 	kicker.mobile = App->physics->CreateRectangle(350, 160, 22, 8, b2_dynamicBody);
