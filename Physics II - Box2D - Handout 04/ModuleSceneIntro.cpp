@@ -22,36 +22,65 @@ ModuleSceneIntro::~ModuleSceneIntro()
 // Load assets
 bool ModuleSceneIntro::Start()
 {
+
+
 	LOG("Loading Intro assets");
 	bola1 = App->textures->Load("pinball/bola1.png");
 	bola2 = App->textures->Load("pinball/bola2.png");
 	bola3 = App->textures->Load("pinball/bola3.png");
 
 
+
+	int triangulo[8] = {
+	292, 489,
+	292, 599,
+	440, 605,
+	299, 487
+	};
+
+	ricks.add(App->physics->CreateChain(0, 0, triangulo, 8, b2_staticBody));
+
+	int triangulo1[8] = {
+	714, 600,
+	715, 489,
+	581, 601,
+	706, 606
+	};
+
+	ricks1.add(App->physics->CreateChain(0, 0, triangulo1, 8, b2_staticBody));
+
+
 	bool ret = true;
 	currentScene = START;
 	App->renderer->camera.x = App->renderer->camera.y = 0;
+
 	Bumper* b = new Bumper;
-	b->bumpy = App->physics->CreateCircle(440, 400, 30, b2_staticBody);
+	b->bumpy = App->physics->CreateCircle(418, 332, 40, b2_staticBody);
 	b->bumpy->listener = this;
 	bumpers.add(b);
 
 	Bumper* b1 = new Bumper;
-	b1->bumpy = App->physics->CreateCircle(520, 300, 30, b2_staticBody);
+	b1->bumpy = App->physics->CreateCircle(594, 332, 40, b2_staticBody);
 	b1->bumpy->listener = this;
 	bumpers.add(b1);
 
 	//Duplica estas lineas 
 	Bumper* b2 = new Bumper;
-	b2->bumpy = App->physics->CreateCircle(600, 400, 30, b2_staticBody);
+	b2->bumpy = App->physics->CreateCircle(508, 436, 40, b2_staticBody);
 	b2->bumpy->listener = this;
 	bumpers.add(b2);
 
+	Bumper* b3 = new Bumper;
+	b3->bumpy = App->physics->CreateCircle(508, 436 - 208, 40, b2_staticBody);
+	b3->bumpy->listener = this;
+	bumpers.add(b3);
+
 
 	backgroundTexture = App->textures->Load("pinball/start.png");
-	circle = App->textures->Load("pinball/BocchiBall.png"); 
+	circle = App->textures->Load("pinball/BocchiBall.png");
 	box = App->textures->Load("pinball/crate.png");
-	rick = App->textures->Load("pinball/rick_head.png");
+	rick = App->textures->Load("pinball/triangle1.png");
+
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
 
 	sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);
