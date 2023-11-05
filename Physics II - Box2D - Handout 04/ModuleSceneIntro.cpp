@@ -259,7 +259,7 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		{
 			//App->audio->PlayFx(bumperFx);
 			b2Vec2 force(bodyB->body->GetWorldCenter() - bodyA->body->GetWorldCenter());
-			force *= 3;
+			force *= 2;
 			bodyB->body->ApplyLinearImpulse(force, bodyB->body->GetWorldCenter(), true);
 			//b->data->animation.Update();
 			//App->player->currentScore += 100;
