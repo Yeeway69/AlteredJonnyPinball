@@ -37,7 +37,8 @@ public:
 	p2List<Bumper*> bumpers;
 	bool fondocargado;
 	bool fondocargado2;
-	
+	int bolas;
+	bool isded;
 	//Pantalla inicio
 	SDL_Texture* backgroundTexture = nullptr;
 	bool skibidi;

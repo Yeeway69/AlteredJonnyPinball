@@ -106,12 +106,20 @@ update_status ModuleSceneIntro::Update()
 	case START:
 		fondocargado = true;
 		fondocargado2 = true;
+		
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 
 		{
 			currentScene = PINBALL;
 			
 		}
+		if (isded) {
+			backgroundTexture = App->textures->Load("pinball/start.png");
+			App->player->fliperTexture = App->textures->Load("pinball/flipperL.png");
+			App->player->kickerTexture = App->textures->Load("pinball/flipperL.png");
+			isded = false;
+		}
+		
 		App->renderer->Blit(backgroundTexture, 0, 0);
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
@@ -135,9 +143,19 @@ update_status ModuleSceneIntro::Update()
 		if (y > 1000) 
 		{
 			App->physics->DestroyObject(App->player->playerBall);
-			circles.add(App->physics->CreateCircle(750, 550, 10));
-			circles.getLast()->data->listener = this;
-			App->player->playerBall = circles.getLast()->data;
+			bolas++;
+			if (bolas == 3) {
+				currentScene = GAMEOVER;
+				bolas = 0;
+			}
+			else {
+				circles.add(App->physics->CreateCircle(750, 550, 10));
+				circles.getLast()->data->listener = this;
+				App->player->playerBall = circles.getLast()->data;
+			}
+			
+			
+			
 		}
 		
 		App->renderer->Blit(backgroundTexture, 0, 0);
@@ -311,7 +329,14 @@ update_status ModuleSceneIntro::Update()
 			ricks.clear();
 			App->player->flippers.clear();
 			App->renderer->Blit(backgroundTexture, 0, 0);
+			if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+
+			{
+				isded = true;
+				currentScene = START;
+			}
 			break;
+			
 		
 	}
 	
