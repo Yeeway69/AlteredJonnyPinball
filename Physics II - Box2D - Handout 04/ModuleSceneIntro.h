@@ -34,7 +34,8 @@ public:
 	bool sensed;
 	Scene currentScene;
 	p2List<Bumper*> bumpers;
-
+	bool fondocargado;
+	bool fondocargado2;
 	//Pantalla inicio
 	SDL_Texture* backgroundTexture = nullptr;
 	bool skibidi;

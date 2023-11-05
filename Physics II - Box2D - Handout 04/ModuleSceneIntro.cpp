@@ -68,7 +68,8 @@ update_status ModuleSceneIntro::Update()
 
 
 	case START:
-		
+		fondocargado = true;
+		fondocargado2 = true;
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 
 		{
@@ -85,8 +86,12 @@ update_status ModuleSceneIntro::Update()
 		break;
 	case PINBALL:
 	{
-
-		backgroundTexture = App->textures->Load("pinball/Fondo1.png");
+		
+		if (fondocargado) {
+			backgroundTexture = App->textures->Load("pinball/Fondo1.png");
+			fondocargado = false;
+		}
+		
 		App->renderer->Blit(backgroundTexture, 0, 0);
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
@@ -217,7 +222,11 @@ update_status ModuleSceneIntro::Update()
 	break;
 
 		case GAMEOVER:
-			backgroundTexture = App->textures->Load("pinball/game_over.png");
+			if (fondocargado2) {
+				backgroundTexture = App->textures->Load("pinball/game_over.png");
+				fondocargado2 = false;
+			}
+			
 			circles.clear();
 			boxes.clear();
 			ricks.clear();
