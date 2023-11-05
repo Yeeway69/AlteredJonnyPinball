@@ -35,6 +35,7 @@ bool ModuleSceneIntro::Start()
 	b->bumpy = App->physics->CreateCircle(440, 400, 30, b2_staticBody);
 	b->bumpy->listener = this;
 	bumpers.add(b);
+
 	Bumper* b1 = new Bumper;
 	b1->bumpy = App->physics->CreateCircle(520, 300, 30, b2_staticBody);
 	b1->bumpy->listener = this;
@@ -46,12 +47,6 @@ bool ModuleSceneIntro::Start()
 	b2->bumpy->listener = this;
 	bumpers.add(b2);
 
-	
-
-	//bola
-
-	
-	
 
 
 	backgroundTexture = App->textures->Load("pinball/start.png");

@@ -122,7 +122,8 @@ update_status ModulePlayer::Update()
 		int x, y;
 		f->data->Rect->GetPosition(x, y);
 
-		App->renderer->Blit(fliperTexture, x, y - 5, false, f->data->rightSide, 1.0f, f->data->Rect->GetRotation());
+		App->renderer->Blit(fliperTexture, x, y - 5, NULL, f->data->rightSide, 1.0f, f->data->Rect->GetRotation());
+		
 
 		f = f->next;
 	}
