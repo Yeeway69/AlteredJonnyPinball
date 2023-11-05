@@ -79,7 +79,18 @@ bool ModulePhysics::Start()
 	600, 766
 	};
 
+	int triangle[8] =
+	{
+		168, 114,
+		168, 132,
+		170, 132,
+		170, 114
+	};
+
 	App->physics->CreateChain(0, 0, pinball, 48, b2_staticBody);
+
+
+
 
 	return true;
 }
