@@ -408,15 +408,6 @@ update_status ModulePhysics::PostUpdate()
 		}
 	}
 
-	
-
-
-
-	// TODO 3: If the player keeps pressing the mouse button, update
-	// target position and draw a red line between both anchor points
-
-	// TODO 4: If the player releases the mouse button, destroy the joint
-
 	return UPDATE_CONTINUE;
 }
 
@@ -504,4 +495,9 @@ void ModulePhysics::BeginContact(b2Contact* contact)
 
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
+}
+
+void ModulePhysics::DestroyObject(PhysBody* physBody)
+{
+	world->DestroyBody(physBody->body);
 }

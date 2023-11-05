@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
+#include "ModulePlayer.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -99,6 +100,16 @@ update_status ModuleSceneIntro::Update()
 			fondocargado = false;
 			circles.add(App->physics->CreateCircle(750, 550, 10));
 			circles.getLast()->data->listener = this;
+			App->player->playerBall = circles.getLast()->data;
+		}
+		int x, y;
+		App->player->playerBall->GetPosition(x, y);
+		if (y > 1000) 
+		{
+			App->physics->DestroyObject(App->player->playerBall);
+			circles.add(App->physics->CreateCircle(750, 550, 10));
+			circles.getLast()->data->listener = this;
+			App->player->playerBall = circles.getLast()->data;
 		}
 		
 		App->renderer->Blit(backgroundTexture, 0, 0);
@@ -224,6 +235,14 @@ update_status ModuleSceneIntro::Update()
 			if (normal.x != 0.0f)
 				App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 			
+		}
+		p2List_item<Bumper*>* b = bumpers.getFirst();
+		while (b != NULL)
+		{
+			int x, y;
+			b->data->bumpy->GetPosition(x, y);
+			App->renderer->Blit(App->player->playerText, x - 2, y - 4, false, false, 1.0f, b->data->bumpy->GetRotation());
+			b = b->next;
 		}
 		
 			

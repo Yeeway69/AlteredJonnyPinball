@@ -37,6 +37,8 @@ public:
 	bool onceInit = true;
 	bool isDead = false;
 
+	PhysBody* playerBall;
+
 	p2List<Flipper*> flippers;
 	SDL_Rect rectSect = { 48, 250, 64, 20 };
 
