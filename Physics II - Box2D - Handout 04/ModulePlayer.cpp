@@ -107,7 +107,7 @@ update_status ModulePlayer::Update()
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
 	{
-		kicker.mobile->body->ApplyForce({ 0,-60 }, { 0,0 }, true);
+		kicker.mobile->body->ApplyForce({ 0,-36 }, { 0,0 }, true);
 		App->audio->PlayFx(kickerFx);
 	}
 
