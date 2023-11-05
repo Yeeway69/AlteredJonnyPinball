@@ -45,9 +45,9 @@ bool ModulePlayer::Start()
 	flippers.add(f2);
 
 	//Kicker
-	kicker.pivot = App->physics->CreateRectangle(750, 700, 22, 24, b2_staticBody);
+	kicker.pivot = App->physics->CreateRectangle(750, 750, 22, 24, b2_staticBody);
 	kicker.mobile = App->physics->CreateRectangle(750, 650, 22, 24, b2_dynamicBody);
-	App->physics->CreatePrismaticJoint(kicker.mobile, { 0,0 }, kicker.pivot, { 0,0 }, { 0,1 }, 1.9f);
+	App->physics->CreatePrismaticJoint(kicker.mobile, { 0,0 }, kicker.pivot, { 0,0 }, { 0,1 }, 2.9f);
 
 	//Ball
 	onceInit = true;
