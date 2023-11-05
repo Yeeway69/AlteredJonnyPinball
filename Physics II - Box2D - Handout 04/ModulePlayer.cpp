@@ -20,7 +20,10 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	playerText = App->textures->Load("Game/pinball/GameElements.png");
+	bola1 = App->textures->Load("pinball/bola1.png");
+	bola2 = App->textures->Load("pinball/bola2.png");
+	bola3 = App->textures->Load("pinball/bola3.png");
+
 
 	// Flippers
 	b2Vec2 pAngle = { -0.44, -0 };

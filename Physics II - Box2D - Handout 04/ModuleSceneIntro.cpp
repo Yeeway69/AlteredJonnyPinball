@@ -241,7 +241,7 @@ update_status ModuleSceneIntro::Update()
 		{
 			int x, y;
 			b->data->bumpy->GetPosition(x, y);
-			App->renderer->Blit(App->player->playerText, x - 2, y - 4, false, false, 1.0f, b->data->bumpy->GetRotation());
+			App->renderer->Blit(App->player->bola1, x - 2, y - 4, false, false, 1.0f, b->data->bumpy->GetRotation());
 			b = b->next;
 		}
 		

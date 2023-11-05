@@ -29,7 +29,9 @@ public:
 	bool CleanUp();
 
 public:
-	SDL_Texture* playerText;
+	SDL_Texture* bola1;
+	SDL_Texture* bola2;
+	SDL_Texture* bola3;
 
 	p2List<PhysBody*> circles;
 	SDL_Rect circleSect = { 127, 317, 19, 21 };
