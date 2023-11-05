@@ -116,7 +116,7 @@ update_status ModuleSceneIntro::Update()
 		if (isded) {
 			backgroundTexture = App->textures->Load("pinball/start.png");
 			App->player->fliperTexture = App->textures->Load("pinball/flipperL.png");
-			App->player->kickerTexture = App->textures->Load("pinball/flipperL.png");
+			App->player->kickerTexture = App->textures->Load("pinball/kicker.png");
 			isded = false;
 		}
 		

@@ -21,7 +21,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	fliperTexture = App->textures->Load("pinball/flipperL.png");
-	kickerTexture = App->textures->Load("pinball/flipperL.png");
+	kickerTexture = App->textures->Load("pinball/kicker.png");
 	
 
 
