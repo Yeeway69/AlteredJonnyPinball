@@ -41,8 +41,15 @@ bool ModuleSceneIntro::Start()
 	b4->bumpy = App->physics->CreateRectangle(200, 600, 300, 300, b2_staticBody);
 	b4->bumpy->listener = this;
 	bumpers.add(b4);
+
+	//bola
+
+	
+	
+
+
 	backgroundTexture = App->textures->Load("pinball/start.png");
-	circle = App->textures->Load("pinball/wheel.png"); 
+	circle = App->textures->Load("pinball/BocchiBall.png"); 
 	box = App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
 	bonus_fx = App->audio->LoadFx("pinball/bonus.wav");
@@ -90,6 +97,8 @@ update_status ModuleSceneIntro::Update()
 		if (fondocargado) {
 			backgroundTexture = App->textures->Load("pinball/Fondo1.png");
 			fondocargado = false;
+			circles.add(App->physics->CreateCircle(750, 550, 10));
+			circles.getLast()->data->listener = this;
 		}
 		
 		App->renderer->Blit(backgroundTexture, 0, 0);

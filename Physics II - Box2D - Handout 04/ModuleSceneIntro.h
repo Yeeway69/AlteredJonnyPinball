@@ -36,6 +36,7 @@ public:
 	p2List<Bumper*> bumpers;
 	bool fondocargado;
 	bool fondocargado2;
+	
 	//Pantalla inicio
 	SDL_Texture* backgroundTexture = nullptr;
 	bool skibidi;
@@ -43,6 +44,7 @@ public:
 
 	SDL_Texture* circle;
 	SDL_Texture* box;
+	SDL_Texture* player;
 	SDL_Texture* rick;
 	uint bonus_fx;
 	p2Point<int> ray;

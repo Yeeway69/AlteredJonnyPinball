@@ -63,7 +63,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 
-	if (onceInit)
+	/*if (onceInit)
 	{
 		circles.add(App->physics->CreateCircle(750, 550, 10));
 		circles.getLast()->data->listener = this;
@@ -71,7 +71,7 @@ update_status ModulePlayer::Update()
 		onceInit = false;
 		isDead = false;
 		onceBall = true;
-	}
+	}*/
 
 	// Flippers --------------------------------------------------
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
