@@ -20,7 +20,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	fliperTexture = App->textures->Load("pinball/bola1.png");
+	fliperTexture = App->textures->Load("pinball/flipperL.png");
 	
 
 

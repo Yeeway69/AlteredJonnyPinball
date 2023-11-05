@@ -78,14 +78,14 @@ update_status ModuleSceneIntro::Update()
 	case START:
 		fondocargado = true;
 		fondocargado2 = true;
-		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 
 		{
 			currentScene = PINBALL;
 			
 		}
 		App->renderer->Blit(backgroundTexture, 0, 0);
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
 			currentScene = GAMEOVER;
 
@@ -113,17 +113,17 @@ update_status ModuleSceneIntro::Update()
 		}
 		
 		App->renderer->Blit(backgroundTexture, 0, 0);
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
 			currentScene = GAMEOVER;
 
 		}
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
 			ray_on = !ray_on;
 			ray.x = App->input->GetMouseX();
 			ray.y = App->input->GetMouseY();
-		}
+		}*/
 
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		{
