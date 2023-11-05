@@ -9,7 +9,9 @@ enum Scene {
 	PINBALL,
 	GAMEOVER
 };
-
+struct Bumper {
+	PhysBody* bumpy;
+};
 class PhysBody;
 
 class ModuleSceneIntro : public Module
@@ -29,6 +31,7 @@ public:
 	p2List<PhysBody*> ricks;
 
 	PhysBody* sensor;
+	p2List<Bumper*> bumpers;
 	bool sensed;
 	Scene currentScene;
 

@@ -26,6 +26,23 @@ bool ModuleSceneIntro::Start()
 	currentScene = START;
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
+	Bumper* b = new Bumper;
+	b->bumpy = App->physics->CreateCircle(440, 400, 30, b2_staticBody);
+	b->bumpy->listener = this;
+	bumpers.add(b);
+	Bumper* b1 = new Bumper;
+	b1->bumpy = App->physics->CreateCircle(520, 300, 30, b2_staticBody);
+	b1->bumpy->listener = this;
+	bumpers.add(b1);
+	Bumper* b2 = new Bumper;
+	b2->bumpy = App->physics->CreateCircle(600, 400, 30, b2_staticBody);
+	b2->bumpy->listener = this;
+	bumpers.add(b2);
+
+	/*App->physics->CreateCircle(440, 400, 30, b2_staticBody);
+	App->physics->CreateCircle(520, 300, 30, b2_staticBody);
+	App->physics->CreateCircle(600, 400, 30, b2_staticBody);*/
+
 	backgroundTexture = App->textures->Load("pinball/start.png");
 	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
@@ -136,6 +153,7 @@ update_status ModuleSceneIntro::Update()
 
 			//ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
 		}
+		
 
 		// Prepare for raycast ------------------------------------------------------
 
@@ -222,16 +240,19 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
-	/*
-	if(bodyA)
+	p2List_item<Bumper*>* b = bumpers.getFirst();
+	while (b != NULL)
 	{
-		bodyA->GetPosition(x, y);
-		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
+		if (bodyA == b->data->bumpy && bodyB->listener == (Module*)App->player)
+		{
+			//App->audio->PlayFx(bumperFx);
+			b2Vec2 force(bodyB->body->GetWorldCenter() - bodyA->body->GetWorldCenter());
+			force *= 3;
+			bodyB->body->ApplyLinearImpulse(force, bodyB->body->GetWorldCenter(), true);
+			//b->data->animation.Update();
+			//App->player->currentScore += 100;
+			return;
+		}
+		b = b->next;
 	}
-
-	if(bodyB)
-	{
-		bodyB->GetPosition(x, y);
-		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
-	}*/
 }
