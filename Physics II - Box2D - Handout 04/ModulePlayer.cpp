@@ -20,31 +20,31 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	// Flippers --------------------------------------------------------------
-	b2Vec2 a = { -0.44, -0 };
+	// Flippers
+	b2Vec2 pAngle = { -0.44, -0 };
 	b2Vec2 b = { -0, 0 };
 	Flipper* f = new Flipper;
 	f->Circle = App->physics->CreateCircle(440, 700, 4, b2_staticBody);
 	f->Rect = App->physics->CreateRectangle(430 + rectSect.w / 2, 690 + rectSect.h / 2, rectSect.w, rectSect.h - 10, b2_dynamicBody);
 	f->rightSide = false;
-	App->physics->CreateRevoluteJoint(f->Rect, a, f->Circle, b, 35.0f);
+	App->physics->CreateRevoluteJoint(f->Rect, pAngle, f->Circle, b, 35.0f);
 	flippers.add(f);
 
-	a = { 0.44,0 };
+	pAngle = { 0.44,0 };
 
-	Flipper* f3 = new Flipper;
-	f3->Circle = App->physics->CreateCircle(570, 700, 4, b2_staticBody);
-	f3->Rect = App->physics->CreateRectangle(560 - rectSect.w / 2, 690 + rectSect.h / 2, rectSect.w, rectSect.h - 10, b2_dynamicBody);
-	f3->rightSide = true;
-	App->physics->CreateRevoluteJoint(f3->Rect, a, f3->Circle, b, 35.0f);
-	flippers.add(f3);
+	Flipper* f2 = new Flipper;
+	f2->Circle = App->physics->CreateCircle(570, 700, 4, b2_staticBody);
+	f2->Rect = App->physics->CreateRectangle(560 - rectSect.w / 2, 690 + rectSect.h / 2, rectSect.w, rectSect.h - 10, b2_dynamicBody);
+	f2->rightSide = true;
+	App->physics->CreateRevoluteJoint(f2->Rect, pAngle, f2->Circle, b, 35.0f);
+	flippers.add(f2);
 
-	//Kicker -----------------------------------------------------------------------------------------
-	kicker.pivot = App->physics->CreateRectangle(1700, 140, 20, 8, b2_staticBody);
-	kicker.mobile = App->physics->CreateRectangle(350, 160, 22, 8, b2_dynamicBody);
+	//Kicker
+	kicker.pivot = App->physics->CreateRectangle(750, 700, 20, 8, b2_staticBody);
+	kicker.mobile = App->physics->CreateRectangle(750, 650, 22, 8, b2_dynamicBody);
 	App->physics->CreatePrismaticJoint(kicker.mobile, { 0,0 }, kicker.pivot, { 0,0 }, { 0,1 }, 1.9f);
 
-	//Ball -------------------------------------------------------------------------------------------
+	//Ball
 	onceInit = true;
 	isDead = false;
 
@@ -65,19 +65,13 @@ update_status ModulePlayer::Update()
 
 	if (onceInit)
 	{
-		circles.add(App->physics->CreateCircle(350, 150, 10));
+		circles.add(App->physics->CreateCircle(750, 550, 10));
 		circles.getLast()->data->listener = this;
 		currentScore = 0;
 		onceInit = false;
 		isDead = false;
 		onceBall = true;
 	}
-
-	/*if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN && App->physics->debug)
-	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 10));
-		circles.getLast()->data->listener = this;
-	}*/
 
 	// Flippers --------------------------------------------------
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -106,19 +100,16 @@ update_status ModulePlayer::Update()
 	}
 
 	// Kicker --------------------------------------------------------
-	//kicker.mobile->body->ApplyForce({ 0,-18 }, { 0,0 }, true);
+	kicker.mobile->body->ApplyForce({ 0,-18 }, { 0,0 }, true);
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		kicker.mobile->body->ApplyForce({ 0,1 }, { 0,0 }, true);
+		kicker.mobile->body->ApplyForce({ 0,18 }, { 0,0 }, true);
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_UP)
 	{
-		kicker.mobile->body->ApplyForce({ 0,-1 }, { 0,0 }, true);
+		kicker.mobile->body->ApplyForce({ 0,-36 }, { 0,0 }, true);
 		App->audio->PlayFx(kickerFx);
 	}
-
-	
-
 
 
 	return UPDATE_CONTINUE;
