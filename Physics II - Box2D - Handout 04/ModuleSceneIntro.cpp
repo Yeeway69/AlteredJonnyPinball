@@ -23,6 +23,11 @@ ModuleSceneIntro::~ModuleSceneIntro()
 bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
+	bola1 = App->textures->Load("pinball/bola1.png");
+	bola2 = App->textures->Load("pinball/bola2.png");
+	bola3 = App->textures->Load("pinball/bola3.png");
+
+
 	bool ret = true;
 	currentScene = START;
 	App->renderer->camera.x = App->renderer->camera.y = 0;
@@ -241,7 +246,32 @@ update_status ModuleSceneIntro::Update()
 		{
 			int x, y;
 			b->data->bumpy->GetPosition(x, y);
-			App->renderer->Blit(App->player->bola1, x , y +2, false, false, 1.0f, b->data->bumpy->GetRotation());
+			if (counterTextures == 0) 
+			{
+				App->renderer->Blit(bola1, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
+			}
+			if (counterTextures == 1) 
+			{
+				App->renderer->Blit(bola2, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
+			}
+			switch (counterTextures)
+			{
+			case 0:
+				
+				break;
+			case 1:
+			
+				break;
+			case 2:
+				App->renderer->Blit(bola3, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
+				break;
+			default:
+				App->renderer->Blit(bola1, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
+				break;
+			}
+			counterTextures++;
+			
+			
 			b = b->next;
 		}
 		

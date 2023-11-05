@@ -49,4 +49,11 @@ public:
 	uint bonus_fx;
 	p2Point<int> ray;
 	bool ray_on;
+
+	int counterTextures = 0;
+	SDL_Texture* bumperTexture;
+
+	SDL_Texture* bola1;
+	SDL_Texture* bola2;
+	SDL_Texture* bola3;
 };

@@ -20,9 +20,8 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	bola1 = App->textures->Load("pinball/bola1.png");
-	bola2 = App->textures->Load("pinball/bola2.png");
-	bola3 = App->textures->Load("pinball/bola3.png");
+	fliperTexture = App->textures->Load("pinball/bola1.png");
+	
 
 
 	// Flippers
@@ -116,6 +115,17 @@ update_status ModulePlayer::Update()
 		App->audio->PlayFx(kickerFx);
 	}
 
+
+	p2List_item<Flipper*>* f = flippers.getFirst();
+	while (f != NULL)
+	{
+		int x, y;
+		f->data->Rect->GetPosition(x, y);
+
+		App->renderer->Blit(fliperTexture, x, y - 5, false, f->data->rightSide, 1.0f, f->data->Rect->GetRotation());
+
+		f = f->next;
+	}
 
 	return UPDATE_CONTINUE;
 }
