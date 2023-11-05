@@ -9,7 +9,9 @@ enum Scene {
 	PINBALL,
 	GAMEOVER
 };
-
+struct Bumper {
+	PhysBody* bumpy;
+};
 class PhysBody;
 
 class ModuleSceneIntro : public Module
@@ -31,7 +33,7 @@ public:
 	PhysBody* sensor;
 	bool sensed;
 	Scene currentScene;
-
+	p2List<Bumper*> bumpers;
 
 	//Pantalla inicio
 	SDL_Texture* backgroundTexture = nullptr;
