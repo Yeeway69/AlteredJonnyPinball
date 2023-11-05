@@ -51,7 +51,9 @@ update_status ModuleSceneIntro::Update()
 	switch (currentScene) 
 	{
 
+
 	case START:
+		
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 
 		{
@@ -68,7 +70,9 @@ update_status ModuleSceneIntro::Update()
 		break;
 	case PINBALL:
 	{
-		
+
+		backgroundTexture = App->textures->Load("pinball/Fondo1.png");
+		App->renderer->Blit(backgroundTexture, 0, 0);
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
 			currentScene = GAMEOVER;
