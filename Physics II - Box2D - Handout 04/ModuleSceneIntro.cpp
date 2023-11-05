@@ -48,7 +48,6 @@ bool ModuleSceneIntro::Start()
 	bumpers.add(b2);
 
 
-
 	backgroundTexture = App->textures->Load("pinball/start.png");
 	circle = App->textures->Load("pinball/BocchiBall.png"); 
 	box = App->textures->Load("pinball/crate.png");

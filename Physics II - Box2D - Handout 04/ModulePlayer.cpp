@@ -21,6 +21,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	fliperTexture = App->textures->Load("pinball/flipperL.png");
+	kickerTexture = App->textures->Load("pinball/flipperL.png");
 	
 
 
@@ -123,10 +124,14 @@ update_status ModulePlayer::Update()
 		f->data->Rect->GetPosition(x, y);
 
 		App->renderer->Blit(fliperTexture, x, y - 5, NULL, f->data->rightSide, 1.0f, f->data->Rect->GetRotation());
-		
 
 		f = f->next;
 	}
+
+
+	int kickerX, kickerY;
+	App->player->kicker.mobile->GetPosition(kickerX, kickerY);
+	App->renderer->Blit(kickerTexture, kickerX, kickerY , false, &App->player->kickerSect);
 
 	return UPDATE_CONTINUE;
 }

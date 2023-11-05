@@ -38,6 +38,7 @@ public:
 	bool isDead = false;
 
 	SDL_Texture* fliperTexture;
+	SDL_Texture* kickerTexture;
 
 	PhysBody* playerBall;
 
