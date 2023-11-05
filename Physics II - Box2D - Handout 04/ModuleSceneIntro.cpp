@@ -39,14 +39,14 @@ bool ModuleSceneIntro::Start()
 	b1->bumpy = App->physics->CreateCircle(520, 300, 30, b2_staticBody);
 	b1->bumpy->listener = this;
 	bumpers.add(b1);
+
+	//Duplica estas lineas 
 	Bumper* b2 = new Bumper;
 	b2->bumpy = App->physics->CreateCircle(600, 400, 30, b2_staticBody);
 	b2->bumpy->listener = this;
 	bumpers.add(b2);
-	Bumper* b4 = new Bumper;
-	b4->bumpy = App->physics->CreateRectangle(200, 600, 300, 300, b2_staticBody);
-	b4->bumpy->listener = this;
-	bumpers.add(b4);
+
+	
 
 	//bola
 
