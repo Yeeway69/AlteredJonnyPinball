@@ -26,7 +26,7 @@ bool ModuleSceneIntro::Start()
 	currentScene = START;
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	backgroundTexture = App->textures->Load("pinball/carajo.png");
+	backgroundTexture = App->textures->Load("pinball/start.png");
 	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
@@ -198,7 +198,7 @@ update_status ModuleSceneIntro::Update()
 	break;
 
 		case GAMEOVER:
-			backgroundTexture = App->textures->Load("pinball/gameoverphrase.png");
+			backgroundTexture = App->textures->Load("pinball/game_over.png");
 			circles.clear();
 			boxes.clear();
 			ricks.clear();
