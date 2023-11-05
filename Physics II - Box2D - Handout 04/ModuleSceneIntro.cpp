@@ -265,8 +265,6 @@ update_status ModuleSceneIntro::Update()
 				break;
 			}
 			counterTextures++;
-			
-			
 			b = b->next;
 		}
 		
@@ -283,6 +281,7 @@ update_status ModuleSceneIntro::Update()
 			circles.clear();
 			boxes.clear();
 			ricks.clear();
+			App->player->flippers.clear();
 			App->renderer->Blit(backgroundTexture, 0, 0);
 			break;
 		
@@ -302,14 +301,13 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	p2List_item<Bumper*>* b = bumpers.getFirst();
 	while (b != NULL)
 	{
-		if (bodyA == b->data->bumpy && bodyB->listener == (Module*)App->player)
+		if (bodyA == b->data->bumpy )
 		{
 			//App->audio->PlayFx(bumperFx);
 			b2Vec2 force(bodyB->body->GetWorldCenter() - bodyA->body->GetWorldCenter());
-			force *= 3;
+			force *= 2;
 			bodyB->body->ApplyLinearImpulse(force, bodyB->body->GetWorldCenter(), true);
-			//b->data->animation.Update();
-			//App->player->currentScore += 100;
+
 			return;
 		}
 		b = b->next;
