@@ -110,6 +110,7 @@ update_status ModuleSceneIntro::Update()
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 
 		{
+			isInPinballScene = true;
 			currentScene = PINBALL;
 			
 		}
@@ -148,7 +149,8 @@ update_status ModuleSceneIntro::Update()
 				currentScene = GAMEOVER;
 				bolas = 0;
 			}
-			else {
+			else 
+			{
 				circles.add(App->physics->CreateCircle(750, 550, 10));
 				circles.getLast()->data->listener = this;
 				App->player->playerBall = circles.getLast()->data;
@@ -161,6 +163,7 @@ update_status ModuleSceneIntro::Update()
 		App->renderer->Blit(backgroundTexture, 0, 0);
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
+			App->physics->DestroyObject(App->player->playerBall);
 			currentScene = GAMEOVER;
 
 		}
@@ -287,30 +290,7 @@ update_status ModuleSceneIntro::Update()
 		{
 			int x, y;
 			b->data->bumpy->GetPosition(x, y);
-			if (counterTextures == 0) 
-			{
-				App->renderer->Blit(bola1, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
-			}
-			if (counterTextures == 1) 
-			{
-				App->renderer->Blit(bola2, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
-			}
-			switch (counterTextures)
-			{
-			case 0:
-				
-				break;
-			case 1:
-			
-				break;
-			case 2:
-				App->renderer->Blit(bola3, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
-				break;
-			default:
-				App->renderer->Blit(bola1, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
-				break;
-			}
-			counterTextures++;
+			App->renderer->Blit(bola1, x, y + 2, false, false, 1.0f, b->data->bumpy->GetRotation());
 			b = b->next;
 		}
 		
@@ -319,6 +299,9 @@ update_status ModuleSceneIntro::Update()
 	break;
 
 		case GAMEOVER:
+				
+
+			isInPinballScene = false;
 			if (fondocargado2) {
 				backgroundTexture = App->textures->Load("pinball/game_over.png");
 				fondocargado2 = false;
@@ -326,8 +309,8 @@ update_status ModuleSceneIntro::Update()
 			
 			circles.clear();
 			boxes.clear();
-			ricks.clear();
-			App->player->flippers.clear();
+			//ricks.clear();
+			//App->player->flippers.clear();
 			App->renderer->Blit(backgroundTexture, 0, 0);
 			if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 

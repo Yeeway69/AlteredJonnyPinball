@@ -52,6 +52,7 @@ public:
 	p2Point<int> ray;
 	bool ray_on;
 
+	bool isInPinballScene = false;
 	int counterTextures = 0;
 	SDL_Texture* bumperTexture;
 

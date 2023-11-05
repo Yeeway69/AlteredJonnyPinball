@@ -116,22 +116,25 @@ update_status ModulePlayer::Update()
 		App->audio->PlayFx(kickerFx);
 	}
 
-
-	p2List_item<Flipper*>* f = flippers.getFirst();
-	while (f != NULL)
+	if (App->scene_intro->isInPinballScene)
 	{
-		int x, y;
-		f->data->Rect->GetPosition(x, y);
+		p2List_item<Flipper*>* f = flippers.getFirst();
+		while (f != NULL)
+		{
+			int x, y;
+			f->data->Rect->GetPosition(x, y);
 
-		App->renderer->Blit(fliperTexture, x, y - 5, NULL, f->data->rightSide, 1.0f, f->data->Rect->GetRotation());
+			App->renderer->Blit(fliperTexture, x, y - 5, NULL, f->data->rightSide, 1.0f, f->data->Rect->GetRotation());
 
-		f = f->next;
+			f = f->next;
+		}
+
+
+		int kickerX, kickerY;
+		App->player->kicker.mobile->GetPosition(kickerX, kickerY);
+		App->renderer->Blit(kickerTexture, kickerX, kickerY, false, &App->player->kickerSect);
 	}
-
-
-	int kickerX, kickerY;
-	App->player->kicker.mobile->GetPosition(kickerX, kickerY);
-	App->renderer->Blit(kickerTexture, kickerX, kickerY , false, &App->player->kickerSect);
+	
 
 	return UPDATE_CONTINUE;
 }
