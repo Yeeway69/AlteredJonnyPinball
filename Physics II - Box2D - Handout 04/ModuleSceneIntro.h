@@ -35,9 +35,10 @@ public:
 
 	//Pantalla inicio
 	SDL_Texture* backgroundTexture = nullptr;
+
 	bool skibidi;
 	//
-
+	bool fondocrgado;
 	SDL_Texture* circle;
 	SDL_Texture* box;
 	SDL_Texture* rick;

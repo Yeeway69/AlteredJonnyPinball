@@ -26,7 +26,7 @@ bool ModuleSceneIntro::Start()
 	currentScene = START;
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
-	backgroundTexture = App->textures->Load("pinball/start.png");
+	backgroundTexture = App->textures->Load("pinball/start2.png");
 	circle = App->textures->Load("pinball/wheel.png"); 
 	box = App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
@@ -57,6 +57,7 @@ update_status ModuleSceneIntro::Update()
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 
 		{
+			fondocrgado = true;
 			currentScene = PINBALL;
 			
 		}
@@ -71,8 +72,13 @@ update_status ModuleSceneIntro::Update()
 	case PINBALL:
 	{
 
-		backgroundTexture = App->textures->Load("pinball/Fondo1.png");
+		if (fondocrgado) {
+			backgroundTexture = App->textures->Load("pinball/Fondo1.png");
+			
+			fondocrgado = false;
+		}
 		App->renderer->Blit(backgroundTexture, 0, 0);
+		
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
 			currentScene = GAMEOVER;
@@ -202,7 +208,7 @@ update_status ModuleSceneIntro::Update()
 	break;
 
 		case GAMEOVER:
-			backgroundTexture = App->textures->Load("pinball/game_over.png");
+			backgroundTexture = App->textures->Load("pinball/gameover.png");
 			circles.clear();
 			boxes.clear();
 			ricks.clear();
