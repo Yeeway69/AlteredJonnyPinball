@@ -38,10 +38,22 @@ bool ModuleSceneIntro::Start()
 	b2->bumpy = App->physics->CreateCircle(600, 400, 30, b2_staticBody);
 	b2->bumpy->listener = this;
 	bumpers.add(b2);
+	Bumper* b4 = new Bumper;
+	b4->bumpy = App->physics->CreateRectangle(200, 600, 300, 300, b2_staticBody);
+	b4->bumpy->listener = this;
+	bumpers.add(b4);
+	/*
+	Bumper* b3 = new Bumper;
+	b3->bumpy = App->physics->CreateRectangle(500, 200, 200, 30, b2_staticBody);
+	b3->bumpy->listener = this;
+	bumpers.add(b3);
+	
+	Bumper* b3 = new Bumper;
+	b3->bumpy = App->physics->CreateRectangle(500, 200, 200, 30, b2_staticBody);
+	b3->bumpy->listener = this;
+	bumpers.add(b3);*/
 
-	/*App->physics->CreateCircle(440, 400, 30, b2_staticBody);
-	App->physics->CreateCircle(520, 300, 30, b2_staticBody);
-	App->physics->CreateCircle(600, 400, 30, b2_staticBody);*/
+
 
 	backgroundTexture = App->textures->Load("pinball/start.png");
 	circle = App->textures->Load("pinball/wheel.png"); 
